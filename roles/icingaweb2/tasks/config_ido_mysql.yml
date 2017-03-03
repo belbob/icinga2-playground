@@ -1,0 +1,12 @@
+---
+- name: config ido_mysql.conf
+  template:
+    src: ido-mysql.conf
+    dest: /etc/icinga2/features-available/ido-mysql.conf
+
+#- name: Enable ido-mysql feature
+#  icinga2_feature:
+#    name: ido-mysql
+#    state: present
+#  notify:
+#    - restart icinga2

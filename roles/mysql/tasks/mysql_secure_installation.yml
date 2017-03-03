@@ -3,7 +3,12 @@
   mysql_user:
     user: root
     password: "{{ mysql_root_password }}"
-    host: localhost
+    host: "{{ item }}"
+  with_items:
+    - "{{ inventory_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
 
 - name: Copy the my.cnf
   template:

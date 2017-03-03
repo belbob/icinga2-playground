@@ -1,0 +1,13 @@
+---
+- name: Create database icinga
+  mysql_db:
+    name: icinga
+    state: present
+  register: db_created
+
+- name: Import schema/mysql.sql if new database icinga
+  mysql_db:
+    name: icinga
+    state: import
+    target: /usr/share/icinga2-ido-mysql/schema/mysql.sql
+  when: db_created.changed

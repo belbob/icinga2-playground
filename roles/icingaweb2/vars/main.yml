@@ -4,8 +4,12 @@ repos:
  - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
  - https://packages.icinga.com/epel/7/release/noarch/icinga-rpm-release-7-1.el7.centos.noarch.rpm
 packages:
- - icinga2
- - nagios-plugins-all
+ - icinga2-ido-mysql
+ - php-intl
+ - php-ldap
+ - php-ZendFramework
+ - php-ZendFramework-Db-Adapter-Pdo-Mysql
+ - php-ZendFramework-Db-Adapter-Pdo
 services:
  - icinga2
 firewalld_services_enabled:
