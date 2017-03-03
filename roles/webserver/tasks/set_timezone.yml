@@ -1,0 +1,8 @@
+---
+- name: set timezone php.ini
+  replace:
+    dest: /etc/php.ini
+    regexp: '^;date.timezone ='
+    replace: 'date.timezone =  {{ time_zone }} '
+  notify:
+    - restart httpd

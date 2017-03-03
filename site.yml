@@ -1,0 +1,10 @@
+---
+- hosts: all
+  user: root #orsome  sudo adminuser
+  become: true
+  gather_facts: True
+
+  roles:
+  - common
+  - webserver
+  - mysql

@@ -1,0 +1,6 @@
+---
+- include: install.yml  # install pkgs
+- include: services.yml  # running services
+- include: security.yml # config firewall
+- include: set_timezone.yml
+- include: add_opcache.yml

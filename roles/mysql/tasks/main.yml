@@ -1,0 +1,5 @@
+---
+- include: install.yml  # install pkgs
+- include: services.yml  # running services
+- include: mysql_secure_installation.yml # secure mysql
+- include: config_phpMyAdmin.yml

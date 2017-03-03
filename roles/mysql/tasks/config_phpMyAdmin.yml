@@ -1,0 +1,8 @@
+---
+- name: config phpMyAdmin.conf
+  copy:
+    src: phpMyAdmin.conf
+    dest: /etc/httpd/conf.d/phpMyAdmin.conf
+    backup: no
+  notify:
+    - restart httpd

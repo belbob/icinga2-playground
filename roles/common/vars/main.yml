@@ -1,0 +1,15 @@
+---
+packages:
+ - wget
+ - ntp
+ - firewalld
+ - cockpit
+services:
+ - sshd
+ - ntpd
+ - firewalld
+ - cockpit
+firewalld_services_enabled:
+ - ssh
+firewalld_ports_enabled:
+ - 9090/tcp

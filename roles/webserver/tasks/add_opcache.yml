@@ -1,0 +1,7 @@
+- name: add opcache
+  copy:
+    src: 50-zend-opcache.ini
+    dest: /etc/php.d/50-zend-opcache.ini
+    backup: no
+  notify:
+    - restart httpd

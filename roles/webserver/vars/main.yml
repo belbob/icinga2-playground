@@ -1,0 +1,14 @@
+---
+repos:
+ - epel-release
+ - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+packages:
+ - httpd
+ #- mod_ssl
+ - php
+ - php71-php-opcache
+services:
+ - httpd
+firewalld_services_enabled:
+ - http
+ #- https

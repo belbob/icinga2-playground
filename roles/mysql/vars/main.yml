@@ -1,0 +1,11 @@
+---
+repos:
+ - epel-release
+ - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+packages:
+ - mariadb-server
+ - php-mysqlnd
+ - MySQL-python
+ - phpmyadmin
+services:
+ - mariadb

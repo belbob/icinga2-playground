@@ -1,0 +1,12 @@
+---
+- name: enable some services for firewalld
+  firewalld:
+    service: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: "{{ firewalld_services_enabled }}"
+  when: firewalld_services_enabled is defined
+  notify:
+    - restart firewalld
+  tags:
+    - security
