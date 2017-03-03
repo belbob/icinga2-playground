@@ -1,13 +1,21 @@
 ---
 - name: Create database icinga
   mysql_db:
-    name: icinga
+    name: "{{ icinga_database }}"
     state: present
   register: db_created
 
 - name: Import schema/mysql.sql if new database icinga
   mysql_db:
-    name: icinga
+    name: "{{ icinga_database }}"
     state: import
     target: /usr/share/icinga2-ido-mysql/schema/mysql.sql
   when: db_created.changed
+
+- name: Sets the root password
+  mysql_user:
+    name: "{{ icinga_user }}"
+    password: "{{ icinga_password }}"
+    host: localhost
+    priv: '{{ icinga_database }}.*:ALL,GRANT'
+    state: present

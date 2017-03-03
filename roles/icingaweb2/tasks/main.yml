@@ -1,6 +1,4 @@
 ---
 - include: install.yml  # install pkgs
-# - include: services.yml  # running services
-# - include: security.yml # config firewall
 - include: setup_database.yml
 - include: config_ido_mysql.yml

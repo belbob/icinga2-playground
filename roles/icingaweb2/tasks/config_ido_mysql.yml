@@ -4,9 +4,26 @@
     src: ido-mysql.conf
     dest: /etc/icinga2/features-available/ido-mysql.conf
 
-#- name: Enable ido-mysql feature
-#  icinga2_feature:
-#    name: ido-mysql
-#    state: present
-#  notify:
-#    - restart icinga2
+# form ansible version 2.3 use icinga2_feature
+- name: Enable ido-mysql and command feature
+  command: icinga2 feature enable ido-mysql command
+  notify:
+    - restart icinga2
+
+- name: add group icinga and icingacmd to apache
+  user:
+    name: apache
+    groups: icinga,icingacmd,icingaweb2
+    append: yes
+  notify:
+    - restart httpd
+
+- name: Create setup token
+  command: icingacli setup token create
+
+- name: show setup token
+  command: icingacli setup token show
+  register: token
+
+- name: print token
+  debug: var=token.stdout
