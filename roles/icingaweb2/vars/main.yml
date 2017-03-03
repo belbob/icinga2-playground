@@ -8,3 +8,7 @@ packages:
  - nagios-plugins-all
 services:
  - icinga2
+firewalld_services_enabled:
+ - ssh
+firewalld_ports_enabled:
+ - 9090/tcp
