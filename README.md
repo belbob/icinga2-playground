@@ -57,6 +57,32 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.xxx.xxx
 ansible-playbook -i hosts site.yml
 ```
 
+### Installation glpi-playground on a local machine
+
+Create a updated machine with a CentOS/7 - minimal install. Use use a fix IP-address.
+
+make sure you have installed dependencies:
+
+```ShellSession
+# yum -y install epel-release
+# yum -y install git ansible
+```
+clone glpi-playground
+
+```ShellSession
+# git clone https://github.com/belbob/icinga2-playground.git
+```
+goto icinga2-playground
+
+```ShellSession
+# cd icinga2-playground
+```
+Edit hosts file and change the hostname and IP-address before run:
+
+```ShellSession
+# ansible-playbook -i hosts -c local site.yml
+```
+
 ## some issues
 
 
