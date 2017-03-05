@@ -12,7 +12,7 @@
     target: /usr/share/icinga2-ido-mysql/schema/mysql.sql
   when: db_created.changed
 
-- name: Sets the root password
+- name: Create icinga as database user
   mysql_user:
     name: "{{ icinga_user }}"
     password: "{{ icinga_password }}"

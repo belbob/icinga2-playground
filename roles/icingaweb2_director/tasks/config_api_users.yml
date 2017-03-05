@@ -1,0 +1,10 @@
+---
+- name: config api-users.conf
+  template:
+    src: api-users.conf
+    dest: /etc/icinga2/conf.d/api-users.conf
+
+- name: Setup icinga2 api
+  command: icinga2 api setup
+  notify:
+    - restart icinga2

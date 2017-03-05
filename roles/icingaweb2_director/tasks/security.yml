@@ -1,0 +1,22 @@
+---
+- name: set SELinux booleans
+  seboolean:
+    name: "{{ item }}"
+    state: yes
+    persistent: yes
+  with_items: "{{ set_sebooleans }}"
+  when: set_sebooleans is defined
+  tags:
+    - security
+
+- name: enable some ports for firewalld
+  firewalld:
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items: "{{firewalld_ports_enabled}}"
+  when: firewalld_ports_enabled is defined
+  notify:
+    - restart firewalld
+  tags:
+    - security

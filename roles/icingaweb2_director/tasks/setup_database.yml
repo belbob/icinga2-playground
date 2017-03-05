@@ -1,0 +1,21 @@
+---
+- name: Create database director
+  mysql_db:
+    name: "{{ director_database }}"
+    state: present
+  register: db_created
+
+- name: Import schema/mysql.sql if new database icinga
+  mysql_db:
+    name: "{{ director_database }}"
+    state: import
+    target: /usr/share/icingaweb2/modules/director/schema/mysql.sql
+  when: db_created.changed
+
+- name: Create director database user
+  mysql_user:
+    name: "{{ director_apiuser }}"
+    password: "{{ director_password }}"
+    host: localhost
+    priv: '{{ director_database }}.*:ALL,GRANT'
+    state: present

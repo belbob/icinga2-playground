@@ -2,4 +2,4 @@
 required_repos: remi,remi-php71  ## remi,remi-safe,remi-php54,55,56,70,71
 icinga_user: icinga
 icinga_password: icinga
-icinga_database: icinga
+icinga_database: icinga_ido

@@ -12,7 +12,7 @@
   yum:
     pkg: "{{ item }}"
     state: latest
-    enablerepo: "{{ required_repos }}"
+#    enablerepo: "{{ required_repos }}"
   with_items: "{{ packages }}"
   when: packages is defined
   tags:

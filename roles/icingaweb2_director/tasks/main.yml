@@ -1,0 +1,5 @@
+---
+- include: install.yml  # install pkgs
+- include: security.yml
+- include: setup_database.yml
+- include: config_api_users.yml

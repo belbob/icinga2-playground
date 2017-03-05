@@ -1,0 +1,5 @@
+---
+firewalld_ports_enabled:
+ - 5665/tcp
+set_sebooleans:
+ - httpd_can_network_connect

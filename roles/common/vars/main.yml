@@ -1,6 +1,7 @@
 ---
 packages:
  - wget
+ - unzip
  - ntp
  - firewalld
  - cockpit

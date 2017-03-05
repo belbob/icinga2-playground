@@ -1,0 +1,9 @@
+---
+- name: Download Icinga Director
+  unarchive:
+    src: https://github.com/Icinga/icingaweb2-module-director/archive/master.zip
+    dest: /usr/share/icingaweb2/modules
+    remote_src: True
+
+- name: Move icingaweb2-module-director-master director
+  command: creates="/usr/share/icingaweb2/modules/director" mv /usr/share/icingaweb2/modules/icingaweb2-module-director-master /usr/share/icingaweb2/modules/director
