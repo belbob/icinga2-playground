@@ -10,6 +10,8 @@ packages:
  - icinga2-ido-mysql
  - php-intl
  - php-ldap
- - php-ZendFramework
- - php-ZendFramework-Db-Adapter-Pdo-Mysql
- - php-ZendFramework-Db-Adapter-Pdo
+# - php-ZendFramework # epel
+ - php-zendframework # remi amd remi-php71
+# - php-ZendFramework-Db-Adapter-Pdo-Mysql # epel
+# - php-ZendFramework-Db-Adapter-Pdo # epel
+ - php-zendframework-zend-db # remi amd remi-php71
