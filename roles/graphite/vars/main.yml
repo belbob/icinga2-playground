@@ -1,0 +1,11 @@
+---
+packages:
+ - python-whisper
+ - python-carbon
+ - graphite-web
+ - MySQL-python
+ - uwsgi-plugin-carbon
+services:
+ - carbon-cache
+firewalld_ports_enabled:
+ - 8005/tcp

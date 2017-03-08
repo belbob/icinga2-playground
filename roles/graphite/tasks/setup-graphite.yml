@@ -1,0 +1,89 @@
+---
+- name: Download icingaweb2-module-graphite
+  unarchive:
+    src: https://github.com/philiphoy/icingaweb2-module-graphite/archive/master.zip
+    dest: /usr/share/icingaweb2/modules
+    remote_src: True
+
+- name: Move icingaweb2-modulegraphite-master graphite
+  command: creates="/usr/share/icingaweb2/modules/graphite" mv /usr/share/icingaweb2/modules/icingaweb2-module-graphite-master/ /usr/share/icingaweb2/modules/graphite/
+
+- name: enable logrotation for carbon
+  replace:
+    dest: /etc/carbon/carbon.conf
+    regexp: '^ENABLE_LOGROTATION = False'
+    replace: 'ENABLE_LOGROTATION = True'
+
+- name: copy storage-schemas
+  copy:
+    src: storage-schemas.conf
+    dest: /etc/carbon/storage-schemas.conf
+
+- name: Create database graphite
+  mysql_db:
+    name: "{{ graphite_database }}"
+    state: present
+
+- name: Create graphite database user
+  mysql_user:
+    name: "{{ graphite_user }}"
+    password: "{{ graphite_password }}"
+    priv: '{{ graphite_database }}.*:ALL,GRANT'
+    state: present
+    host: "{{ item }}"
+  with_items:
+    - "{{ inventory_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: Set graphite-web/local_settings.py
+  lineinfile:
+    dest: /etc/graphite-web/local_settings.py
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^#SECRET_KEY', line: 'SECRET_KEY = "1r3ou$lSg71#cb2coery^hjbyc@6@yynfmd1$493^k8=l$lrs7"' }
+    - { regexp: '^#TIME_ZONE', line: 'TIME_ZONE = "{{ time_zone }}"' }
+
+- name: Set database-graphite-web/local_settings.py
+  blockinfile:
+    dest: /etc/graphite-web/local_settings.py
+    insertbefore: '^#DATABASES = {'
+    block: |
+      DATABASES = {
+      'default': {
+         'NAME': '{{ graphite_database }}',
+         'ENGINE': 'django.db.backends.mysql',
+         'USER': '{{ graphite_user }}',
+         'PASSWORD': '{{ graphite_password }}',
+         'HOST': '127.0.0.1',
+         'PORT': '3306'
+      }}
+
+- name: create djano-app database
+  shell: "/usr/lib/python*/site-packages/graphite/manage.py syncdb --noinput"
+  become: true
+
+- name: copy graphite-web.conf
+  copy:
+    src: graphite-web.conf
+    dest: /etc/httpd/conf.d/graphite-web.conf
+  notify:
+    - restart httpd
+
+- name: Creates directory /etc/icingaweb2/modules/graphite/
+  file:
+    path: /etc/icingaweb2/modules/graphite/
+    state: directory
+
+- name: Generate graphite/config.ini
+  template:
+    src: config_ini.j2
+    dest: /etc/icingaweb2/modules/graphite/config.ini
+
+# form ansible version 2.3 use icinga2_feature
+- name: Enable graphite feature
+  command: icinga2 feature enable graphite
+  notify:
+    - restart icinga2

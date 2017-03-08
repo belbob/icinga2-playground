@@ -11,3 +11,12 @@
   - icinga2
   - icingaweb2
   - icingaweb2_director
+  - graphite
+
+  post_tasks:
+    - name: show setup token
+      command: icingacli setup token show
+      register: token
+
+    - name: print token
+      debug: var=token.stdout
