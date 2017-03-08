@@ -1,0 +1,4 @@
+---
+- include: install.yml  # install pkgs
+- include: setup-dashing.yml
+- include: security.yml # config firewall

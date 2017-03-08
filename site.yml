@@ -10,7 +10,7 @@
   - mysql
   - icinga2
   - icingaweb2
-  - icingaweb2_director
+  - director
   - graphite
 
   post_tasks:

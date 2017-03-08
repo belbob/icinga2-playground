@@ -1,0 +1,11 @@
+---
+packages:
+ - rubygems
+ - rubygem-bundler
+ - ruby-devel
+ - openssl
+ - gcc-c++
+ - make
+ - nodejs
+firewalld_ports_enabled:
+ - 8005/tcp

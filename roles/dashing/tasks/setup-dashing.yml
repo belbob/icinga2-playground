@@ -1,0 +1,38 @@
+---
+- name: Download dashing-icinga2
+  unarchive:
+    src: https://github.com/Icinga/dashing-icinga2/archive/master.zip
+    dest: /usr/share/
+    remote_src: True
+
+- name: Move dashing-icinga2-master dashing-icinga2
+  command: creates="/usr/share/dashing-icinga2" mv /usr/share/dashing-icinga2-master /usr/share/dashing-icinga2
+
+- name: install bundler
+  gem:
+    name: bundler
+    state: latest
+
+- name: install the dependencies for dashing-icinga2
+  bundler:
+    state: latest
+    chdir: /usr/share/dashing-icinga2
+
+- name: Add to apiuser for dashing-icinga2
+  blockinfile:
+    dest: /etc/icinga2/conf.d/api-users.conf
+    block: |
+      object ApiUser "{{ dashing_user }}" {
+        password = "{{ dashing_password }}"
+        permissions = [ "status/query", "objects/query/*" ]
+      }
+  notify:
+    - restart httpd
+
+- name: Set config/icinga2.json
+  template:
+    src: icinga2_json.j2
+    dest: /usr/share/dashing-icinga2/config/icinga2.json
+
+- name: start dashing-icinga2
+  command: /usr/share/dashing-icinga2/restart-dashing
