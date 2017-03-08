@@ -12,6 +12,7 @@
   - icingaweb2
   - director
   - graphite
+  - dashing
 
   post_tasks:
     - name: show setup token
