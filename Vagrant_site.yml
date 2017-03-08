@@ -5,13 +5,13 @@
   gather_facts: True
 
   roles:
-#  - common
-#  - webserver
-#  - mysql
-#  - icinga2
-#  - icingaweb2
-#  - director
-#  - graphite
+  - common
+  - webserver
+  - mysql
+  - icinga2
+  - icingaweb2
+  - director
+  - graphite
   - dashing
 
   post_tasks:
