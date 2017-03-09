@@ -1,5 +1,5 @@
 ---
-graphite_user: graphite
-graphite_password: password
-graphite_database: graphite
-time_zone: Europe/Brussels
+#graphite_user: graphite
+#graphite_password: password
+#graphite_database: graphite
+#time_zone: Europe/Brussels

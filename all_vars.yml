@@ -1,0 +1,29 @@
+---
+#selinux_state: permissive
+selinux_state: enforcing
+time_zone: Europe/Brussels
+
+# used repos
+required_repos: remi,remi-php71  ## remi,remi-safe,remi-php54,55,56,70,71
+
+# Daching
+dashing_user: dashing
+dashing_password: password
+
+# director
+director_apiuser: director
+director_password: password
+director_database: icinga_director
+
+# graphite
+graphite_user: graphite
+graphite_password: password
+graphite_database: graphite
+
+# icingaweb2
+icinga_user: icinga
+icinga_password: icinga
+icinga_database: icinga_ido
+
+# mysql
+mysql_root_password: password

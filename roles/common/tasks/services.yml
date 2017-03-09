@@ -8,3 +8,9 @@
   when: services is defined
   tags:
     - services
+    
+- name: start cockit.socket
+  systemd:
+    name: cockpit.socket
+    state: started
+    enabled: True

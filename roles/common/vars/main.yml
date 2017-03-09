@@ -9,7 +9,7 @@ services:
  - sshd
  - ntpd
  - firewalld
- - cockpit
+# - cockpit
 firewalld_services_enabled:
  - ssh
 firewalld_ports_enabled:

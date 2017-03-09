@@ -4,15 +4,18 @@
   become: true
   gather_facts: True
 
+  vars_files:
+    - all_vars.yml
+
   roles:
-  - common
-  - webserver
-  - mysql
-  - icinga2
-  - icingaweb2
-  - director
-  - graphite
-  - dashing
+    - common
+    - webserver
+    - mysql
+    - icinga2
+    - icingaweb2
+    - director
+    - graphite
+    - dashing
 
   post_tasks:
     - name: show setup token

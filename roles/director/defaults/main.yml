@@ -1,4 +1,4 @@
 ---
-director_apiuser: director
-director_password: password
-director_database: icinga_director
+# director_apiuser: director
+# director_password: password
+# director_database: icinga_director
