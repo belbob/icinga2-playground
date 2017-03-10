@@ -1,3 +1,4 @@
 ---
 - include: install.yml  # install pkgs
 - include: services.yml  # running services
+- include: security.yml  # exeption for nagios_unconfined_plugin_exec_tcheck_disk

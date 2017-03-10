@@ -1,12 +1,17 @@
 ---
-- name: enable some ports for firewalld
-  firewalld:
-    port: "{{ item }}"
-    permanent: true
-    state: enabled
-  with_items: "{{firewalld_ports_enabled}}"
-  when: firewalld_ports_enabled is defined
+#- name: enable some ports for firewalld
+#  firewalld:
+#    port: "{{ item }}"
+#    permanent: true
+#    state: enabled
+#  with_items: "{{firewalld_ports_enabled}}"
+#  when: firewalld_ports_enabled is defined
+#  notify:
+#    - restart firewalld
+#  tags:
+#    - security
+
+- name: Workaround for Nagios check_disk failure
+  command: chcon -t nagios_unconfined_plugin_exec_t /usr/lib64/nagios/plugins/check_disk
   notify:
-    - restart firewalld
-  tags:
-    - security
+    - restart icinga2

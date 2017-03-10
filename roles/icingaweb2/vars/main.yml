@@ -2,7 +2,7 @@
 repos:
  - epel-release
  - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
- - https://packages.icinga.com/epel/7/release/noarch/icinga-rpm-release-7-1.el7.centos.noarch.rpm
+ - http://packages.icinga.com/epel/7/release/noarch/icinga-rpm-release-7-2.el7.centos.noarch.rpm
 packages:
  - icingacli
  - icingaweb2

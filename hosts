@@ -1,2 +1,2 @@
 [glpi]
-icinga2.belbob.thuis ansible_host=192.168.122.98
+icinga2.belbob.thuis ansible_host=192.168.122.99
